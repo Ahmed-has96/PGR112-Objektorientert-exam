@@ -10,11 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VoteDBSystem {
-	private static final DatabaseConnection database = new DatabaseConnection("localhost", "3306",
-			"voteDB",
-			"root",
-			"Arsenals12"
-	);
+	private static final DatabaseConnection database = new DatabaseConnection("voteDB");
 
 	static  {
 		try (Connection connection = database.getConnection()) {

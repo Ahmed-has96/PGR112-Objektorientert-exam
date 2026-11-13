@@ -13,13 +13,13 @@ public class Main {
 
 
 	private VoteDBSystem voteDBSystem = new VoteDBSystem();
-	private DatabaseCreation databaseCreation = new DatabaseCreation();
 	private NominerteDBSystem nominerteDBSystem = new NominerteDBSystem();
 
 	private StudentDBSystem studentDBSystem = new StudentDBSystem();
 	private Student currentUser = null;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws java.sql.SQLException {
+		DatabaseCreation.initialize();
 		Main main = new Main();
 		main.run();
 
@@ -38,7 +38,7 @@ public class Main {
 
 				System.out.println("4. Avslutt");
 
-				int option = getIntInput(scanner, 1, 3);
+				int option = getIntInput(scanner, 1, 4);
 				switch (option) {
 					case 1:
 						signIn(scanner);

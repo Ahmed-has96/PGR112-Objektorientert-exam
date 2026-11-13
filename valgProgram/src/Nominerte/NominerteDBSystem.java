@@ -13,11 +13,7 @@ import java.sql.PreparedStatement;
 
 
 public class NominerteDBSystem {
-	private static final DatabaseConnection database = new DatabaseConnection("localhost", "3306",
-			"voteDB",
-			"root",
-			"Arsenals12"
-	);
+	private static final DatabaseConnection database = new DatabaseConnection("voteDB");
 
 	static {
 		try (Connection connection = database.getConnection()) {

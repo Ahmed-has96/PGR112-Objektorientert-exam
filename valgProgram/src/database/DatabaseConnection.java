@@ -1,39 +1,29 @@
 package database;
 
-
-import java.sql.SQLException;
-import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DatabaseConnection implements DBConnection {
+    private final String databaseName;
 
+    public DatabaseConnection(String databaseName) {
+        this.databaseName = databaseName;
+    }
 
-	private final String userName;
-	private final String password;
-	private final String host;
-	private final String name;
-	private final String port;
+    @Override
+    public Connection getConnection() throws SQLException {
+        String host = System.getenv().getOrDefault("VOTE_DB_HOST", "localhost");
+        String port = System.getenv().getOrDefault("VOTE_DB_PORT", "3306");
+        String url = "jdbc:mysql://" + host + ":" + port + "/" + databaseName;
+        return DriverManager.getConnection(url, required("VOTE_DB_USER"), required("VOTE_DB_PASSWORD"));
+    }
 
-
-
-
-
-	public DatabaseConnection(String dbHost, String dbPort, String dbName, String dbUserName, String dbPassword) {
-		this.host = dbHost;
-		this.port = dbPort;
-		this.name = dbName;
-		this.userName = dbUserName;
-		this.password = dbPassword;
-	}
-
-	@Override
-	public Connection getConnection() throws SQLException {
-		Connection connection = null;
-		String url = "jdbc:mysql://" + host + ":" + port + "/" + name;
-
-		connection = DriverManager.getConnection(url, userName, password);
-		return connection;
-	}
-
-
+    private static String required(String key) {
+        String value = System.getenv(key);
+        if (value == null || value.isEmpty()) {
+            throw new IllegalStateException("Sett " + key + " før du starter programmet.");
+        }
+        return value;
+    }
 }

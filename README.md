@@ -1,50 +1,16 @@
+# Studentvalg · Java og MySQL
 
-# PGR112 – Object-Oriented Programming Exam ( May2023)
+Et konsollprogram der studenter logger inn med student-ID, nominerer en medstudent og stemmer på en kandidat. Programmet lagrer stemmer og kommentarer i MySQL ved hjelp av JDBC. Prosjektet er fra faget objektorientert programmering ved Høyskolen Kristiania.
 
-This is my submission for the 24-hour individual home exam in PGR112 – Object-Oriented Programming, completed during the 2nd semester at Høyskolen i Kristiania.
+## Les koden
 
-✅ **Result:** Passed/Fail, **(Passed)**
+- [Main.java](valgProgram/src/Main.java) viser menyene og flyten fra innlogging til avstemning.
+- [NominerteDBSystem.java](valgProgram/src/Nominerte/NominerteDBSystem.java) henter kandidater og oppdaterer stemmetall.
+- [VoteDBSystem.java](valgProgram/src/Nominerte/VoteDBSystem.java) registrerer stemmer og sjekker om en student allerede har stemt.
 
-📅 **Exam date:** May, 2023
+## Kjør lokalt
 
-🛠️ **Technologies:** Java, JDBC, MySQL  
-
----
-
-## 💡 About the Exam Task
-
-The exam task was to build a small voting system where students could:
-- Log in using their student ID
-- Nominate fellow students
-- Vote once and leave an anonymous comment
-- See the top nominee and comments
-- Ensure validation rules (e.g. no voting twice, can’t nominate yourself)
-
-The project applies core object-oriented principles and uses a MySQL database connection.
-
----
-
-## 🚀 How to Run the Program
-
-1. Run the provided SQL files to set up `studentDB` and `voteDB`
-2. Open the project in IntelliJ IDEA (or another Java IDE)
-3. Run `Main.java`
-4. Use test student IDs from the SQL data to log in and interact
-
----
-
-## 🧠 Object-Oriented Concepts Used
-
-- Classes and Objects
-- Inheritance and Polymorphism
-- Encapsulation and Aggregation
-- Modular structure with packages (e.g. `student`, `database`, `Nominerte`)
-- Input validation and database interaction using JDBC
-
----
-
-## 📁 Files
-
-- `/src` – all source code files (organized in packages)
-- `/sql` – SQL files to initialize databases
-- `README.md` – this file
+1. Bruk en lokal MySQL-instans for utprøving. Opprett en egen databasebruker som kan opprette og bruke databasene `studentDB` og `voteDB`.
+2. Åpne `valgProgram` i en Java-IDE med JDK. Sett [src](valgProgram/src) som kildemappe og legg MySQL Connector/J på kjørebanen (classpath).
+3. Sett `VOTE_DB_USER` og `VOTE_DB_PASSWORD` i den lokale kjørekonfigurasjonen. `VOTE_DB_HOST` og `VOTE_DB_PORT` er valgfrie; standard er `localhost` og `3306`.
+4. Kjør [Main.java](valgProgram/src/Main.java). Programmet oppretter databaser og tabeller og legger inn eksempelstudenter ved første oppstart. Velg **3** i hovedmenyen for å se hvilke student-ID-er du kan bruke.

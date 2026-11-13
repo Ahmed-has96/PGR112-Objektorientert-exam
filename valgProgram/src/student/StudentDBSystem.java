@@ -11,11 +11,7 @@ import java.util.List;
 
 public class StudentDBSystem {
 
-	private static final DatabaseConnection database = new DatabaseConnection("localhost", "3306",
-			"studentDB",
-			"root",
-			"Arsenals12"
-	);
+	private static final DatabaseConnection database = new DatabaseConnection("studentDB");
 	static {
 		String createStudentsTableQuery =
 				"CREATE TABLE IF NOT EXISTS Students ("
